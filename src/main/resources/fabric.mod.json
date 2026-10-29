@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "here-is-chat",
+  "version": "${version}",
+  "name": "Here Is Chat",
+  "description": "Hides the in-game chat overlay until you open the chat screen. Chat history, messages and commands keep working.",
+  "authors": ["fixpot47"],
+  "environment": "client",
+  "mixins": [
+    "here-is-chat.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3",
+    "java": ">=25"
+  }
+}
