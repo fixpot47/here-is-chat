@@ -9,9 +9,15 @@ base {
     archivesName = project.archives_base_name
 }
 
+repositories {
+    maven { url = 'https://maven.terraformersmc.com/' }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {

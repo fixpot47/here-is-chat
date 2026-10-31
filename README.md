@@ -1,28 +1,31 @@
 # Here Is Chat 💬
 
-Tiny **client-side Fabric mod for Minecraft 26.2** that hides the on-screen chat while you play and shows it when you open the chat screen.
+Lightweight client-side **Fabric** mod for Minecraft **26.2**.
 
-## How it works
+## Features (v1.1.0)
 
-- **Normal gameplay:** chat overlay is hidden, even when new messages arrive.
-- **T:** opens the original Minecraft chat with available message history and the input field.
-- **/**: command input works unchanged.
-- **Enter / Esc:** closes the chat screen; the overlay is hidden again.
-- **History:** the mod doesn't delete, filter, or mute incoming messages.
-- Client-side only; servers don't need to install it.
+- In gameplay, the background chat HUD only displays messages whose sender matches a name in your personal allowlist.
+- Messages from everybody else are still available in **full chat history** when you press **T**.
+- **/** command input and normal message sending work unchanged.
+- **F6** turns the entire Here Is Chat filtering feature on/off. When OFF, vanilla chat is fully restored.
+- **Mod Menu → Here Is Chat → Config** opens a simple username manager.
+- Add or remove usernames (case-insensitive). The list has **no hardcoded size limit**, with pagination.
+- Your names and toggle state are saved to `config/here-is-chat.json`.
+
+> Name recognition uses the visible message header and common separators (`<Player>`, `Player: text`, `Player » text`). Some servers use unusual chat formats: those may require pattern adjustments. Whitelisted users' messages are not individually filtered from the full chat when T is open.
 
 ## Requirements
 
 - Minecraft Java Edition **26.2**
 - Fabric Loader **0.19.3+**
+- Fabric API for **26.2**
 - Java **25+**
-- **Fabric API is not required.**
+- Mod Menu **20.x** (optional, but required to open the configuration GUI)
 
 ## Download
 
-Open **Actions → Build Here Is Chat (Minecraft 26.2) → latest successful run → Artifacts → here-is-chat-1.0.1-26.2**.
-
-Extract `here-is-chat-1.0.1+26.2.jar` from the downloaded ZIP and place it in your Fabric instance's `mods` folder. Remove any existing 26.3 build.
+Go to **Actions → latest successful build → Artifacts → here-is-chat-1.1.0-26.2**, extract the `.jar`, put it in your Fabric instance's `mods` folder.
+Remove any previous Here Is Chat JAR.
 
 ## Build
 
@@ -31,12 +34,6 @@ With Java 25 and Gradle 9.6.1:
 ```sh
 gradle clean build
 ```
-
-Output: `build/libs/here-is-chat-1.0.1+26.2.jar`.
-
-## Implementation
-
-A client Mixin cancels `ChatComponent.extractRenderState` only for `DisplayMode.BACKGROUND`. It doesn't change the foreground chat screen or the incoming message history.
 
 ## License
 
