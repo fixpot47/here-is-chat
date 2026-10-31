@@ -1,4 +1,4 @@
-name: Build Here Is Chat
+name: Build Here Is Chat (Minecraft 26.2)
 
 on:
   push:
@@ -22,10 +22,10 @@ jobs:
           distribution: temurin
           java-version: '25'
 
-      - name: Set up Gradle 9.7.1
+      - name: Set up Gradle 9.6.1
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '9.7.1'
+          gradle-version: '9.6.1'
 
       - name: Build Fabric mod
         run: gradle --no-daemon clean build
@@ -33,6 +33,6 @@ jobs:
       - name: Upload mod JAR
         uses: actions/upload-artifact@v4
         with:
-          name: here-is-chat-1.0.0
-          path: build/libs/here-is-chat-1.0.0.jar
+          name: here-is-chat-1.0.1-26.2
+          path: build/libs/here-is-chat-1.0.1+26.2.jar
           if-no-files-found: error
