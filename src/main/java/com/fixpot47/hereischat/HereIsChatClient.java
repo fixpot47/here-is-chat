@@ -3,9 +3,8 @@ package com.fixpot47.hereischat;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
 public final class HereIsChatClient implements ClientModInitializer {
@@ -14,7 +13,7 @@ public final class HereIsChatClient implements ClientModInitializer {
         ChatSettings.load();
 
         KeyMapping.Category category = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("here-is-chat", "controls"));
-        KeyMapping toggleKey = KeyBindingHelper.registerKeyBinding(
+        KeyMapping toggleKey = KeyMappingHelper.registerKeyMapping(
             new KeyMapping(
                 "key.here-is-chat.toggle",
                 InputConstants.Type.KEYSYM,
@@ -26,13 +25,6 @@ public final class HereIsChatClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleKey.consumeClick()) {
                 ChatSettings.setEnabled(!ChatSettings.isEnabled());
-                // Display status even though the normal chat HUD may currently be hidden.
-                if (client.player != null) {
-                    client.player.displayClientMessage(
-                        Component.literal("Here Is Chat: " + (ChatSettings.isEnabled() ? "ON" : "OFF")),
-                        true
-                    );
-                }
             }
         });
     }
